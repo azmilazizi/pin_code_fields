@@ -13,11 +13,10 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
-        backgroundColor: Colors.white,
-        scaffoldBackgroundColor: Colors.white,
+        backgroundColor: Color(0xFF20202D),
+        scaffoldBackgroundColor: Color(0xFF20202D),
       ),
-      home: PinCodeVerificationScreen(
-          "+8801376221100"), // a random number, please don't call xD
+      home: PinCodeVerificationScreen("+8801376221100"), // a random number, please don't call xD
     );
   }
 }
@@ -28,8 +27,7 @@ class PinCodeVerificationScreen extends StatefulWidget {
   PinCodeVerificationScreen(this.phoneNumber);
 
   @override
-  _PinCodeVerificationScreenState createState() =>
-      _PinCodeVerificationScreenState();
+  _PinCodeVerificationScreenState createState() => _PinCodeVerificationScreenState();
 }
 
 class _PinCodeVerificationScreenState extends State<PinCodeVerificationScreen> {
@@ -69,7 +67,7 @@ class _PinCodeVerificationScreenState extends State<PinCodeVerificationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Constants.PRIMARY_COLOR,
+      backgroundColor: Color(0xFF20202D),
       body: GestureDetector(
         onTap: () {},
         child: Container(
@@ -95,18 +93,12 @@ class _PinCodeVerificationScreenState extends State<PinCodeVerificationScreen> {
                 ),
               ),
               Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 30.0, vertical: 8),
+                padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 8),
                 child: RichText(
                   text: TextSpan(
                       text: "Enter the code sent to ",
                       children: [
-                        TextSpan(
-                            text: "${widget.phoneNumber}",
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 15)),
+                        TextSpan(text: "${widget.phoneNumber}", style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 15)),
                       ],
                       style: TextStyle(color: Colors.black54, fontSize: 15)),
                   textAlign: TextAlign.center,
@@ -116,79 +108,59 @@ class _PinCodeVerificationScreenState extends State<PinCodeVerificationScreen> {
                 height: 20,
               ),
               Form(
-                key: formKey,
                 child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 8.0, horizontal: 30),
-                    child: PinCodeTextField(
-                      appContext: context,
-                      pastedTextStyle: TextStyle(
-                        color: Colors.green.shade600,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      length: 6,
-                      obscureText: true,
-                      obscuringCharacter: '*',
-                      obscuringWidget: FlutterLogo(
-                        size: 24,
-                      ),
-                      blinkWhenObscuring: true,
-                      animationType: AnimationType.fade,
-                      validator: (v) {
-                        if (v!.length < 3) {
-                          return "I'm from validator";
-                        } else {
-                          return null;
-                        }
-                      },
-                      pinTheme: PinTheme(
-                        shape: PinCodeFieldShape.box,
-                        borderRadius: BorderRadius.circular(5),
-                        fieldHeight: 50,
-                        fieldWidth: 40,
-                        activeFillColor: Colors.white,
-                      ),
-                      cursorColor: Colors.black,
-                      animationDuration: Duration(milliseconds: 300),
-                      enableActiveFill: true,
-                      errorAnimationController: errorController,
-                      controller: textEditingController,
-                      keyboardType: TextInputType.number,
-                      boxShadows: [
-                        BoxShadow(
-                          offset: Offset(0, 1),
-                          color: Colors.black12,
-                          blurRadius: 10,
-                        )
-                      ],
-                      onCompleted: (v) {
-                        print("Completed");
-                      },
-                      // onTap: () {
-                      //   print("Pressed");
-                      // },
-                      onChanged: (value) {
-                        print(value);
-                        setState(() {
-                          currentText = value;
-                        });
-                      },
-                      beforeTextPaste: (text) {
-                        print("Allowing to paste $text");
-                        //if you return true then it will show the paste confirmation dialog. Otherwise if false, then nothing will happen.
-                        //but you can show anything you want here, like your pop up saying wrong paste format or etc
-                        return true;
-                      },
-                    )),
+                  padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 30),
+                  child: PinCodeTextField(
+                    autoFocus: true,
+                    appContext: context,
+                    pastedTextStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    length: 8,
+                    useHapticFeedback: true,
+                    animationType: AnimationType.fade,
+                    // validator: (v) {
+                    //   var result = viewmodel.validateBirthdate(v);
+                    //   if (result is String) {
+                    //     return 'Age below 18 is restricted in Metapmate.';
+                    //   } else if (!result) {
+                    //     return 'Date is invalid. ';
+                    //   } else {
+                    //     return null;
+                    //   }
+                    // },
+                    pinTheme: PinTheme(
+                      activeColor: Colors.white,
+                      selectedColor: Colors.white,
+                      inactiveColor: Colors.white54,
+                      shape: PinCodeFieldShape.box,
+                      borderRadius: BorderRadius.circular(10),
+                      fieldHeight: 35,
+                      fieldWidth: 35,
+                    ),
+                    cursorColor: Colors.transparent,
+                    animationDuration: Duration(milliseconds: 300),
+                    keyboardType: TextInputType.number,
+                    boxShadows: [
+                      BoxShadow(
+                        offset: Offset(0, 1),
+                        color: Colors.black12,
+                        blurRadius: 10,
+                      )
+                    ],
+                    onCompleted: (v) {
+                      // viewmodel.concatDate(v);
+                    },
+                    beforeTextPaste: (text) {
+                      return false;
+                    },
+                    onChanged: (String value) {},
+                  ),
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 30.0),
                 child: Text(
                   hasError ? "*Please fill up all the cells properly" : "",
-                  style: TextStyle(
-                      color: Colors.red,
-                      fontSize: 12,
-                      fontWeight: FontWeight.w400),
+                  style: TextStyle(color: Colors.red, fontSize: 12, fontWeight: FontWeight.w400),
                 ),
               ),
               SizedBox(
@@ -205,10 +177,7 @@ class _PinCodeVerificationScreenState extends State<PinCodeVerificationScreen> {
                       onPressed: () => snackBar("OTP resend!!"),
                       child: Text(
                         "RESEND",
-                        style: TextStyle(
-                            color: Color(0xFF91D3B3),
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16),
+                        style: TextStyle(color: Color(0xFF91D3B3), fontWeight: FontWeight.bold, fontSize: 16),
                       ))
                 ],
               ),
@@ -216,8 +185,7 @@ class _PinCodeVerificationScreenState extends State<PinCodeVerificationScreen> {
                 height: 14,
               ),
               Container(
-                margin:
-                    const EdgeInsets.symmetric(vertical: 16.0, horizontal: 30),
+                margin: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 30),
                 child: ButtonTheme(
                   height: 50,
                   child: TextButton(
@@ -225,8 +193,7 @@ class _PinCodeVerificationScreenState extends State<PinCodeVerificationScreen> {
                       formKey.currentState!.validate();
                       // conditions for validating
                       if (currentText.length != 6 || currentText != "123456") {
-                        errorController!.add(ErrorAnimationType
-                            .shake); // Triggering error shake animation
+                        errorController!.add(ErrorAnimationType.shake); // Triggering error shake animation
                         setState(() => hasError = true);
                       } else {
                         setState(
@@ -240,26 +207,14 @@ class _PinCodeVerificationScreenState extends State<PinCodeVerificationScreen> {
                     child: Center(
                         child: Text(
                       "VERIFY".toUpperCase(),
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold),
+                      style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
                     )),
                   ),
                 ),
-                decoration: BoxDecoration(
-                    color: Colors.green.shade300,
-                    borderRadius: BorderRadius.circular(5),
-                    boxShadow: [
-                      BoxShadow(
-                          color: Colors.green.shade200,
-                          offset: Offset(1, -2),
-                          blurRadius: 5),
-                      BoxShadow(
-                          color: Colors.green.shade200,
-                          offset: Offset(-1, 2),
-                          blurRadius: 5)
-                    ]),
+                decoration: BoxDecoration(color: Colors.green.shade300, borderRadius: BorderRadius.circular(5), boxShadow: [
+                  BoxShadow(color: Colors.green.shade200, offset: Offset(1, -2), blurRadius: 5),
+                  BoxShadow(color: Colors.green.shade200, offset: Offset(-1, 2), blurRadius: 5)
+                ]),
               ),
               SizedBox(
                 height: 16,
