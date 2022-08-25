@@ -46,7 +46,7 @@ class PinCodeTextField extends StatefulWidget {
   final Duration blinkDuration;
 
   /// returns the current typed text in the fields
-  final ValueChanged<String> onChanged;
+  final ValueChanged<String>? onChanged;
 
   /// returns the typed text when all pins are set
   final ValueChanged<String>? onCompleted;
@@ -211,7 +211,7 @@ class PinCodeTextField extends StatefulWidget {
     this.obscuringWidget,
     this.blinkWhenObscuring = false,
     this.blinkDuration = const Duration(milliseconds: 500),
-    required this.onChanged,
+    this.onChanged,
     this.onCompleted,
     this.backgroundColor,
     this.mainAxisAlignment = MainAxisAlignment.spaceBetween,
@@ -452,7 +452,7 @@ class _PinCodeTextFieldState extends State<PinCodeTextField> with TickerProvider
 
           if (widget.autoDismissKeyboard) _focusNode!.unfocus();
         }
-        widget.onChanged(currentText);
+        widget.onChanged?.call(currentText);
       }
 
       _setTextToInput(currentText);
@@ -516,6 +516,16 @@ class _PinCodeTextFieldState extends State<PinCodeTextField> with TickerProvider
     Color relevantInActiveColor = _pinTheme.inactiveColor;
     if (isInErrorMode) relevantInActiveColor = _pinTheme.errorBorderColor;
     return relevantInActiveColor;
+  }
+
+  List<BoxShadow>? _getBoxShadowFromIndex(int index) {
+    if (_selectedIndex == index) {
+      return _pinTheme.activeBoxShadows;
+    } else if (_selectedIndex > index) {
+      return _pinTheme.inActiveBoxShadows;
+    }
+
+    return [];
   }
 
   Widget _renderPinField({
@@ -733,6 +743,7 @@ class _PinCodeTextFieldState extends State<PinCodeTextField> with TickerProvider
           ),
           scrollPadding: widget.scrollPadding,
           readOnly: widget.readOnly,
+          obscureText: widget.obscureText,
         ),
       ),
     );
