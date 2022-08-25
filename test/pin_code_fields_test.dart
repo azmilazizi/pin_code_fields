@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -20,7 +19,6 @@ void main() {
           body: PinCodeTextField(
             appContext: context,
             length: 6,
-            onChanged: (input) {},
             errorAnimationController: controller,
           ),
         ),
@@ -59,7 +57,6 @@ void main() {
                 backgroundColor: Colors.transparent,
                 length: 6,
                 animationDuration: Duration.zero,
-                onChanged: (input) {},
               );
             }),
           ),

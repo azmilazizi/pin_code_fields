@@ -48,7 +48,7 @@ A flutter package which will help you to generate pin code fields with beautiful
 ## Properties 🔖
 
 ```Dart
-/// The [BuildContext] of the application
+  /// The [BuildContext] of the application
   final BuildContext appContext;
 
   ///Box Shadow for Pincode
@@ -104,7 +104,7 @@ A flutter package which will help you to generate pin code fields with beautiful
   final TextStyle? textStyle;
 
   /// the style of the pasted text, default is [fontWeight: FontWeight.bold] while
-  /// [TextStyle.color] is [ThemeData.accentColor]
+  /// [TextStyle.color] is [ThemeData.colorScheme.onSecondary]
   final TextStyle? pastedTextStyle;
 
   /// background color for the whole row of pin code fields.
@@ -185,12 +185,20 @@ A flutter package which will help you to generate pin code fields with beautiful
   final FormFieldSetter<String>? onSaved;
 
   /// enables auto validation for the [TextFormField]
-  /// Default is false
+  /// Default is [AutovalidateMode.onUserInteraction]
   final AutovalidateMode autovalidateMode;
 
   /// The vertical padding from the [PinCodeTextField] to the error text
   /// Default is 16.
   final double errorTextSpace;
+
+  /// Margin for the error text
+  /// Default is [EdgeInsets.zero].
+  final EdgeInsets errorTextMargin;
+
+  /// [TextDirection] to control a direction in which text flows.
+  /// Default is [TextDirection.ltr]
+  final TextDirection errorTextDirection;
 
   /// Enables pin autofill for TextFormField.
   /// Default is true
@@ -226,15 +234,18 @@ A flutter package which will help you to generate pin code fields with beautiful
   /// [TextStyle.color] is [Colors.grey]
   final TextStyle? hintStyle;
 
-<<<<<<< HEAD
-  /// ScrollPadding for the text field. Same as [TextFormField]'s scrollPadding
-  final EdgeInsets scrollPadding;
-
-=======
   /// ScrollPadding follows the same property as TextField's ScrollPadding, default to
   /// const EdgeInsets.all(20),
   final EdgeInsets scrollPadding;
->>>>>>> 8272cbfd8a1dab43b2b4f4f1107752dda1d9d230
+
+  /// Text gradient for Pincode
+  final Gradient? textGradient;
+
+  /// Makes the pin cells readOnly
+  final bool readOnly;
+
+  /// Enable auto unfocus
+  final bool autoUnfocus;
 ```
 
 **PinTheme**
@@ -337,12 +348,16 @@ Thanks to everyone whoever suggested their thoughts to improve this package. And
   <td align="center"><a href="https://github.com/adarsh-technocrat"><img src="https://avatars.githubusercontent.com/u/14288495?s=400&v=4" width="100px;" alt="adarsh-technocrat"/><br /><sub><b>Adarsh kumar singh</b></sub></a><br /><a href="https://github.com/adar2378/pin_code_fields/commits?author=adarsh-technocrat" title="Code">💻</a></td>
   <td align="center"><a href="https://github.com/adrianFarkas"><img src="https://avatars.githubusercontent.com/u/45693911?v=4" width="100px;" alt="adrianFarkas"/><br /><sub><b>Farkas Adrián</b></sub></a><br /><a href="https://github.com/adar2378/pin_code_fields/commits?author=adrianFarkas" title="Code">💻</a></td>
   <td align="center"><a href="https://github.com/grafovdenis"><img src="https://avatars.githubusercontent.com/u/20505376?v=4" width="100px;" alt="grafovdenis"/><br /><sub><b>Denis Grafov</b></sub></a><br /><a href="https://github.com/adar2378/pin_code_fields/commits?author=grafovdenis" title="Code">💻</a></td>
+  
+  </tr>
+  <tr>
   <td align="center"><a href="https://github.com/ItzNotABug"><img src="https://avatars.githubusercontent.com/u/20625965?v=4" width="100px;" alt="ItzNotABug"/><br /><sub><b>DarShan</b></sub></a><br /><a href="https://github.com/adar2378/pin_code_fields/commits?author=ItzNotABug" title="Code">💻</a></td>
   <td align="center"><a href="https://github.com/dhruvanbhalara"><img src="https://avatars.githubusercontent.com/u/53393418?v=4" width="100px;" alt="dhruvanbhalara"/><br /><sub><b>Dhruvan Bhalara</b></sub></a><br /><a href="https://github.com/adar2378/pin_code_fields/commits?author=dhruvanbhalara" title="Code">💻</a></td>
-<<<<<<< HEAD
-=======
   <td align="center"><a href="https://github.com/rodion-m"><img src="https://avatars.githubusercontent.com/u/36400912?v=4" width="100px;" alt="rodion-m"/><br /><sub><b>Rodion Mostovoy</b></sub></a><br /><a href="https://github.com/adar2378/pin_code_fields/commits?author=rodion-m" title="Code">💻</a></td>
->>>>>>> 8272cbfd8a1dab43b2b4f4f1107752dda1d9d230
+  <td align="center"><a href="https://github.com/nerotyc"><img src="https://avatars.githubusercontent.com/u/25231329?v=4" width="100px;" alt="nerotyc"/><br /><sub><b>Robin Holzinger</b></sub></a><br /><a href="https://github.com/adar2378/pin_code_fields/commits?author=nerotyc" title="Code">💻</a></td>
+  <td align="center"><a href="https://github.com/Graaggas"><img src="https://avatars.githubusercontent.com/u/24309240?v=4" width="100px;" alt="Graaggas"/><br /><sub><b>Deyew Vladimir</b></sub></a><br /><a href="https://github.com/adar2378/pin_code_fields/commits?author=Graaggas" title="Code">💻</a></td>
+  <td align="center"><a href="https://github.com/Add00w"><img src="https://avatars.githubusercontent.com/u/35359329?v=4" width="100px;" alt="Add00w"/><br /><sub><b>Abdullahi A. Addow</b></sub></a><br /><a href="https://github.com/adar2378/pin_code_fields/commits?author=Add00w" title="Code">💻</a></td>
+  <td align="center"><a href="https://github.com/vlkonoshenko"><img src="https://avatars.githubusercontent.com/u/15077780?v=4" width="100px;" alt="vlkonoshenko"/><br /><sub><b>Konoshenko Vlad</b></sub></a><br /><a href="https://github.com/adar2378/pin_code_fields/commits?author=vlkonoshenko" title="Code">💻</a></td>
   </tr>
 </table>
 

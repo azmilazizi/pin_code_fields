@@ -1,10 +1,14 @@
 import 'dart:async';
+
 import 'package:flutter/material.dart';
+
 import 'package:pin_code_fields/pin_code_fields.dart';
+
 import './constants/constants.dart';
 
 void main() => runApp(MyApp());
 
+// ignore: use_key_in_widget_constructors
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
@@ -16,7 +20,7 @@ class MyApp extends StatelessWidget {
         backgroundColor: Color(0xFF20202D),
         scaffoldBackgroundColor: Color(0xFF20202D),
       ),
-      home: PinCodeVerificationScreen("+8801376221100"), // a random number, please don't call xD
+      home: PinCodeVerificationScreen(phoneNumber: "+8801376221100"), // a random number, please don't call xD
     );
   }
 }
@@ -24,7 +28,10 @@ class MyApp extends StatelessWidget {
 class PinCodeVerificationScreen extends StatefulWidget {
   final String? phoneNumber;
 
-  PinCodeVerificationScreen(this.phoneNumber);
+  const PinCodeVerificationScreen({
+    Key? key,
+    this.phoneNumber,
+  }) : super(key: key);
 
   @override
   _PinCodeVerificationScreenState createState() => _PinCodeVerificationScreenState();
@@ -59,7 +66,7 @@ class _PinCodeVerificationScreenState extends State<PinCodeVerificationScreen> {
     return ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(message!),
-        duration: Duration(seconds: 2),
+        duration: const Duration(seconds: 2),
       ),
     );
   }
@@ -70,22 +77,22 @@ class _PinCodeVerificationScreenState extends State<PinCodeVerificationScreen> {
       backgroundColor: Color(0xFF20202D),
       body: GestureDetector(
         onTap: () {},
-        child: Container(
+        child: SizedBox(
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
           child: ListView(
             children: <Widget>[
-              SizedBox(height: 30),
-              Container(
+              const SizedBox(height: 30),
+              SizedBox(
                 height: MediaQuery.of(context).size.height / 3,
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(30),
-                  child: Image.asset("${Constants.OTP_GIF_IMAGE}"),
+                  child: Image.asset(Constants.otpGifImage),
                 ),
               ),
-              SizedBox(height: 8),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8.0),
+              const SizedBox(height: 8),
+              const Padding(
+                padding: EdgeInsets.symmetric(vertical: 8.0),
                 child: Text(
                   'Phone Number Verification',
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
@@ -100,11 +107,11 @@ class _PinCodeVerificationScreenState extends State<PinCodeVerificationScreen> {
                       children: [
                         TextSpan(text: "${widget.phoneNumber}", style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 15)),
                       ],
-                      style: TextStyle(color: Colors.black54, fontSize: 15)),
+                      style: const TextStyle(color: Colors.black54, fontSize: 15)),
                   textAlign: TextAlign.center,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Form(
@@ -163,13 +170,13 @@ class _PinCodeVerificationScreenState extends State<PinCodeVerificationScreen> {
                   style: TextStyle(color: Colors.red, fontSize: 12, fontWeight: FontWeight.w400),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
+                  const Text(
                     "Didn't receive the code? ",
                     style: TextStyle(color: Colors.black54, fontSize: 15),
                   ),
@@ -181,7 +188,7 @@ class _PinCodeVerificationScreenState extends State<PinCodeVerificationScreen> {
                       ))
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 14,
               ),
               Container(
@@ -216,7 +223,7 @@ class _PinCodeVerificationScreenState extends State<PinCodeVerificationScreen> {
                   BoxShadow(color: Colors.green.shade200, offset: Offset(-1, 2), blurRadius: 5)
                 ]),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 16,
               ),
               Row(
@@ -224,14 +231,14 @@ class _PinCodeVerificationScreenState extends State<PinCodeVerificationScreen> {
                 children: <Widget>[
                   Flexible(
                       child: TextButton(
-                    child: Text("Clear"),
+                    child: const Text("Clear"),
                     onPressed: () {
                       textEditingController.clear();
                     },
                   )),
                   Flexible(
                       child: TextButton(
-                    child: Text("Set Text"),
+                    child: const Text("Set Text"),
                     onPressed: () {
                       setState(() {
                         textEditingController.text = "123456";
