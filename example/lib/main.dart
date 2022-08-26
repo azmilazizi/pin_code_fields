@@ -118,6 +118,7 @@ class _PinCodeVerificationScreenState extends State<PinCodeVerificationScreen> {
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 30),
                   child: PinCodeTextField(
+                    hintCharacter: 'DDMMYYYY',
                     autoFocus: true,
                     appContext: context,
                     pastedTextStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),

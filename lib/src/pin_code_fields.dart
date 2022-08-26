@@ -546,7 +546,7 @@ class _PinCodeTextFieldState extends State<PinCodeTextField> with TickerProvider
 
     if (_inputList[index!].isEmpty && _hintAvailable) {
       return Text(
-        widget.hintCharacter!,
+        widget.hintCharacter![index],
         key: ValueKey(_inputList[index]),
         style: _hintStyle,
       );
