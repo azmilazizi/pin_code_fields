@@ -813,7 +813,7 @@ class _PinCodeTextFieldState extends State<PinCodeTextField> with TickerProvider
             () {
               if (i == 2 || i == 4)
                 return Text(
-                  '/ ',
+                  '- ',
                   style: TextStyle(color: Colors.white),
                 );
               else
